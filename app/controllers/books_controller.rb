@@ -16,6 +16,7 @@ class BooksController < ApplicationController
       @books = Book.where('title LIKE ? OR author LIKE ? OR category_id LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     else
       @books = Book.all
+    end
   end
   # GET /books/new
   def new
