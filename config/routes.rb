@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+  get 'books/search', to: 'books#search', as: 'search_books'
   resources :books
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  resources :users
+  resources :distributors
+  resources :publishers
+  resources :categories
+  resources :book_types
+  resources :stock_books
+  resources :receive_books
+  resources :return_books
+  resources :payment_books
+  resources :sell_books
+  devise_for :users
+  root to: 'books#index'
 end

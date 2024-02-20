@@ -1,14 +1,76 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to 'Home', books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Data User (Kasir)', users_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Data Distributor', distributors_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Data Penerbit', publishers_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Data Kategori Buku', categories_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Data Jenis Buku', book_types_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Data Buku', books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Pencarian Buku (1)', search_books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Pencarian Buku (2)', search_books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Kontrol Stok Buku', stock_books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Transaksi Penerimaan', receive_books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Transaksi Retur', return_books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Transaksi Pembayaran', payment_books_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Transaksi Penjualan', sell_books_path %>
+        </li>
+      </ul>
+    </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav flex-column">
+        <!-- Your navigation links here -->
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <h1>Selamat datang !</h1>
+      <p>Anda login sebagai Admin</p>
+      <p style="color: green"><%= notice %></p>
 
-<h1>Books</h1>
+      <h1>Books</h1>
 
-<div id="books">
-  <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
-  <% end %>
+      <%= form_with url: search_books_path, method: :get do |f| %>
+        <%= f.label :search, 'Search for books:' %>
+        <%= f.text_field :search %>
+        <%= f.submit 'Search' %>
+      <% end %>
+      
+      <div id="books">
+        <%= render partial: 'book', collection: @books %>
+      </div>
+
+      <%= link_to "New book", new_book_path %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New book", new_book_path %>

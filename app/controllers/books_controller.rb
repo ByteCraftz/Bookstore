@@ -9,7 +9,14 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
   end
-
+  
+  # GET /books/Search
+  def search
+    if params[:search].present?
+      @books = Book.where('title LIKE ? OR author LIKE ? OR category_id LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @books = Book.all
+  end
   # GET /books/new
   def new
     @book = Book.new
